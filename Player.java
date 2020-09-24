@@ -93,6 +93,58 @@ public class Player {
 				return "TIE";
 		}
 		
+		public static void main(String[] args) {
+			//create input stream object scanRound to input data from keyboard- standard input device
+			Scanner scanRound = new Scanner(System.in);
+			//prompt the user the number of rounds to play
+			System.out.println("Enter the Number of rounds you need to play\t");
+			//store number of rounds in rounds variable
+			int rounds = scanRound.nextInt();
+			
+			//create first Player class object
+			Player A = new Player('A');
+			//create second Player class object
+			Player B = new Player('B');
+			
+			
+			try {
+				//create input stream object scanPlayer to accept player name
+				Scanner scanPlayer = new Scanner(System.in);
+				//prompt the user for player name who wish to play first
+				System.out.println("Enter the Player who won the toss between A and B\t");
+				char playerFirst = scanPlayer.next().charAt(0);
+				//display the player who bats first.
+				System.out.println(playerFirst+" bats first.");
+			
+				if(playerFirst == 'A'|| playerFirst == 'B') {
+					if(playerFirst == 'A')
+					{
+						//call match() method
+						System.out.println(match(rounds, A, B));
+					}
+					else if(playerFirst == 'B') 
+					{	//call match() method
+						System.out.println(match(rounds, B, A));
+					}
+				}
+				else
+				{
+					//Player names are A or B otherwise, display an error
+					throw new RuntimeException("Invalid input only char A and B expected");
+	        
+				}	
+				//close input stream objects
+				scanPlayer.close();
+				scanRound.close();
+			}	
+			catch(RuntimeException re){
+		        System.out.print(re.getMessage());
+	            //System.out.println();
+			}
+			
+		}
+		
+		
 
 			
 }
