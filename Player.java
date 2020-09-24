@@ -36,6 +36,64 @@ public class Player {
 			return runs[randRun];
 		}
 		
+		//createing a static method to call from any player to match scores of current player with next player
+		//Also to decide who is the winner during the number of rounds specified by the user
+		public static String match(int rounds, Player currentPlayer, Player nextPlayer) {
+			
+			Player tempPlayer = new Player('\0'); 	//used to switch between two teams
+			for(int round = 1; round <= rounds; round++) {  
+				
+				System.out.println("Round "+round+":");
+				System.out.println(currentPlayer.name+" is batting");
+				for(int ball = 0; ball < 6; ball++) {
+					
+					currentPlayer.batting = true;
+					
+					currentPlayer.run = currentPlayer.getRun();
+					nextPlayer.run = nextPlayer.getRun();
+					if(currentPlayer.run != nextPlayer.run)
+					
+						if(currentPlayer.name == 'A' ) {
+							
+							currentPlayer.score = currentPlayer.score + currentPlayer.run;
+							System.out.println(currentPlayer.name +" throws "+currentPlayer.run+" "+nextPlayer.name+" throws "+nextPlayer.run+" "+ currentPlayer.name +"'s score is "+currentPlayer.score);
+							if(currentPlayer.score < currentPlayer.target) {
+								System.out.println("target"+currentPlayer.target);
+								break;
+							}
+						}
+						else {
+							
+							currentPlayer.score = currentPlayer.score + nextPlayer.run;
+							System.out.println(currentPlayer.name +" throws "+currentPlayer.run+" "+nextPlayer.name+" throws "+nextPlayer.run+" "+ currentPlayer.name +"'s score is "+currentPlayer.score);
+							if(currentPlayer.score < currentPlayer.target)
+								break;
+						}
+					
+					else if(currentPlayer.run == nextPlayer.run) {
+
+						System.out.println(currentPlayer.name +" throws "+currentPlayer.run+" "+nextPlayer.name+" throws "+nextPlayer.run+" "+ currentPlayer.name +" is out");
+						break;
+					}
+					
+				}
+				
+				currentPlayer.target = currentPlayer.score;  //setting current payer score as target for opponent
+				tempPlayer = currentPlayer;
+				currentPlayer = nextPlayer;
+				nextPlayer = tempPlayer;
+			 
+			}
+			//deciding the winner and TIE between teams
+			if(currentPlayer.score > nextPlayer.score)       
+				return "Game Winner is "+currentPlayer.name;
+			else if(currentPlayer.score < nextPlayer.score)
+				return nextPlayer.name+" is winner";
+			else
+				return "TIE";
+		}
+		
+
 			
 }
 
