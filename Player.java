@@ -64,15 +64,19 @@ public class Player {
 						}
 						else {
 							
-							currentPlayer.score = currentPlayer.score + nextPlayer.run;
-							System.out.println(currentPlayer.name +" throws "+currentPlayer.run+" "+nextPlayer.name+" throws "+nextPlayer.run+" "+ currentPlayer.name +"'s score is "+currentPlayer.score);
+							currentPlayer.score = currentPlayer.score + currentPlayer.run;
+							System.out.println(nextPlayer.name+" throws "+nextPlayer.run+" "+currentPlayer.name +" throws "+currentPlayer.run+" "+ currentPlayer.name +"'s score is "+currentPlayer.score);
 							if(currentPlayer.score < currentPlayer.target)
 								break;
 						}
 					
 					else if(currentPlayer.run == nextPlayer.run) {
 
-						System.out.println(currentPlayer.name +" throws "+currentPlayer.run+" "+nextPlayer.name+" throws "+nextPlayer.run+" "+ currentPlayer.name +" is out");
+						if(round==1)
+							System.out.println(currentPlayer.name +" throws "+currentPlayer.run+" "+nextPlayer.name+" throws "+nextPlayer.run+" "+ currentPlayer.name +" is out");
+						else
+							System.out.println(nextPlayer.name +" throws "+nextPlayer.run+" "+currentPlayer.name+" throws "+currentPlayer.run+" "+ currentPlayer.name +" is out");
+								
 						break;
 					}
 					
