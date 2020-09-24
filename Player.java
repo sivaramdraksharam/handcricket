@@ -10,6 +10,31 @@ public class Player {
 	public int target;   		//target set for chasing player
 	public int run;
 	
+	//default constructor
+	public Player(){
+		score =0;
+		batting = false;
+		run = 0;
+		name = 'U';
+		target = 0;
+	}
+
+
+	//overloaded constructor to initialize attribures
+		public Player(char c){
+			score =0;
+			batting = false;
+			run = 0;
+			name = c;
+			target = 0;
+		}	
+		
+		
+		
+		
+
+	
+	
 }
 
    
